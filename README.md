@@ -1,6 +1,6 @@
 ## wanted-codestates-project-10-11 🌈
 
-📎 [](https://flamboyant-borg-cf3d11.netlify.app/)
+📎 [과제링크](https://flamboyant-borg-cf3d11.netlify.app/)
 
 ### About 🪄
 
