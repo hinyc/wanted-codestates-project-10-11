@@ -27,10 +27,16 @@
 </template>
 
 <script>
+import referenceData from './ReferenceData';
 export default {
   name: 'App',
   data() {
-    return {};
+    return {
+      user: referenceData.user,
+      samsung: referenceData.samsungElectronics,
+      kakao: referenceData.kakao,
+      lg: referenceData.lgCNS,
+    };
   },
   methods: {},
 
