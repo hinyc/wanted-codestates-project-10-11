@@ -19,9 +19,9 @@
           />
         </svg>
       </div>
-      <div class="bottom">
-        <button class="reset-button">
-          <p>{{ companyName }}</p>
+      <div v-if="selectCompany">
+        <button class="reset-button" @click="removeSelectedCompany">
+          <p>{{ selectCompany }}</p>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -48,6 +48,7 @@
     </div>
     <div class="search-bar">
       <input
+        class="company-name"
         type="text"
         placeholder="기업명을 검색하세요"
         v-model="inputValue"
@@ -63,11 +64,10 @@ export default {
   props: {
     msg: String,
   },
-  components: {},
   data() {
     return {
       inputValue: "",
-      companyName: "그레이비랩",
+      selectCompany: "그레이비랩",
     };
   },
   methods: {
@@ -76,10 +76,16 @@ export default {
       const companies = ["삼성전자", "카카오", "LG CNS"];
 
       if (companies.indexOf(this.inputValue) !== -1) {
-        this.companyName = this.inputValue;
+        this.selectCompany = this.inputValue;
+        document.querySelector(".company-name").blur();
       } else {
         // '기업 정보가 없습니다' 메시지 창 띄우기
         console.log("기업 정보가 없습니다");
+      }
+    },
+    removeSelectedCompany() {
+      if (this.selectCompany) {
+        this.selectCompany = "";
       }
     },
   },
