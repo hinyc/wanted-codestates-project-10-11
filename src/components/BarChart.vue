@@ -31,12 +31,13 @@ export default defineComponent({
       scales: {
         y: {
           backgroundColor: 'black',
+          display: false,
           grid: {
             display: false,
           },
         },
         x: {
-          backgroundColor: 'red',
+          display: false,
           grid: {
             display: false,
           },
@@ -51,12 +52,13 @@ export default defineComponent({
     });
 
     const testData = computed(() => ({
-      labels: ['적극성', '자신감', '책임감', '개인성향', '수평사고'],
+      labels: ['적극적인', '자신있는', '책임있는', '개인주의', '수평적인'],
       datasets: [
         {
           data: data.value,
           backgroundColor: ['#6e3cf9'],
           barThickness: 10,
+          bar: { backgroundColor: 'red' },
         },
       ],
     }));
