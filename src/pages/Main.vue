@@ -12,7 +12,7 @@
       </span>
     </div>
     <input placeholder="기업명을 검색하세요." />
-    <div class="graph">graph</div>
+    <PantagonChart />
     <div class="tabs">
       <button class="tab">모두</button>
       <button class="tab">본인</button>
@@ -22,12 +22,16 @@
       <div class="sub-title">MY RESULT</div>
       <div class="main-title">나의 결과는?</div>
     </div>
-    <div class="result-graph">result</div>
+    <BarChart />
+    <Test />
   </div>
 </template>
 
 <script>
 import referenceData from '../ReferenceData';
+import BarChart from '../components/BarChart.vue';
+import PantagonChart from '../components/PantagonChart.vue';
+import Test from '../components/Test.vue';
 export default {
   name: 'App',
   data() {
@@ -39,6 +43,7 @@ export default {
     };
   },
   methods: {},
+  components: { BarChart, PantagonChart, Test },
 };
 </script>
 
