@@ -1,7 +1,8 @@
 <template>
   <div id="container">
     <Search />
-    <MessageBox />
+    <MessageBox v-if="isMessageVisible" />
+    <button class="open-message-btn" @click="showMessage">클릭</button>
     <PantagonChart />
     <div class="graph">graph</div>
     <div class="tabContainer">
@@ -55,6 +56,8 @@ export default {
           },
         },
       ],
+      isMessageVisible: false,
+      msgTimeoutID: {},
     };
   },
 
@@ -62,6 +65,19 @@ export default {
     changeCurrentTab(i) {
       this.currentTab = i;
       console.log(i);
+    },
+    showMessage() {
+      if (this.isMessageVisible) {
+        return;
+      }
+      if (this.msgTimeoutID) {
+        clearTimeout(this.setTimeout);
+      }
+      this.isMessageVisible = true;
+
+      this.msgTimeoutID = setTimeout(() => {
+        this.isMessageVisible = !this.isMessageVisible;
+      }, 1500);
     },
   },
 
@@ -135,5 +151,9 @@ input::placeholder {
   width: 339px;
   height: 202px;
   background-color: rgba(0, 0, 0, 0.199);
+}
+.open-message-btn {
+  position: absolute;
+  left: 30px;
 }
 </style>
