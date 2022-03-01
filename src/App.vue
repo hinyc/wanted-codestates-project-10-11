@@ -1,21 +1,15 @@
 <template>
-  <h1>wanted-codestates-project-10-11</h1>
+  <Main />
 </template>
 
 <script>
+import Main from './pages/Main.vue';
 export default {
   name: 'App',
-  components: {},
+  components: {
+    Main,
+  },
 };
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
+<style></style>
