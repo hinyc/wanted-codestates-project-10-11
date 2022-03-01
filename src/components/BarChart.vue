@@ -12,7 +12,7 @@ export default defineComponent({
   name: 'Home',
   components: { BarChart },
   setup() {
-    const data = ref([30, 40, 60, 70, 5]);
+    const data = ref([8, 10, 10, 3, 6]);
     const doughnutRef = ref();
 
     const options = ref({
