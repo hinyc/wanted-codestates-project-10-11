@@ -18,17 +18,13 @@
       <button class="tab">본인</button>
       <button class="tab">회사</button>
     </div>
-    <div class="result-title">
-      <div class="sub-title">MY RESULT</div>
-      <div class="main-title">나의 결과는?</div>
-    </div>
-    <BarChart />
+    <Result />
   </div>
 </template>
 
 <script>
 import referenceData from '../ReferenceData';
-import BarChart from '../components/BarChart.vue';
+import Result from '../components/Result.vue';
 export default {
   name: 'App',
   data() {
@@ -40,7 +36,7 @@ export default {
     };
   },
   methods: {},
-  components: { BarChart },
+  components: { Result },
 };
 </script>
 

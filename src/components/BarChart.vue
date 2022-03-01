@@ -1,5 +1,10 @@
 <template>
-  <BarChart ref="doughnutRef" :chartData="testData" :options="options" />
+  <BarChart
+    id="bar-chart"
+    ref="doughnutRef"
+    :chartData="testData"
+    :options="options"
+  />
 </template>
 
 <script>
@@ -12,7 +17,7 @@ export default defineComponent({
   name: 'Home',
   components: { BarChart },
   setup() {
-    const data = ref([8, 10, 10, 3, 6]);
+    const data = ref([-8, -10, -10, 3, -6]);
     const doughnutRef = ref();
 
     const options = ref({
@@ -23,6 +28,26 @@ export default defineComponent({
         },
       },
       indexAxis: 'y',
+      scales: {
+        y: {
+          backgroundColor: 'black',
+          grid: {
+            display: false,
+          },
+        },
+        x: {
+          backgroundColor: 'red',
+          grid: {
+            display: false,
+          },
+          ticks: {
+            display: true,
+            stepSize: 2,
+          },
+          min: -10,
+          max: 10,
+        },
+      },
     });
 
     const testData = computed(() => ({
@@ -31,6 +56,7 @@ export default defineComponent({
         {
           data: data.value,
           backgroundColor: ['#6e3cf9'],
+          barThickness: 10,
         },
       ],
     }));
@@ -39,3 +65,10 @@ export default defineComponent({
   },
 });
 </script>
+
+<style>
+#bar-chart {
+  /* width: 100px;
+  height: 200px; */
+}
+</style>
