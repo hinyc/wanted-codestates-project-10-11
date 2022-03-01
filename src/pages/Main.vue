@@ -12,6 +12,8 @@
       </span>
     </div>
     <input placeholder="기업명을 검색하세요." />
+
+ <PantagonChart />
     <div class="graph">graph</div>
     <div class="tabContainer">
       <CategoryTab
@@ -19,17 +21,25 @@
         :currentTab="currentTab"
         @changeCurrentTab="changeCurrentTab"
       />
+
     </div>
     <div class="result-title">
       <div class="sub-title">MY RESULT</div>
       <div class="main-title">나의 결과는?</div>
     </div>
-    <div class="result-graph">result</div>
+    <BarChart />
+    <Test />
   </div>
 </template>
 <script>
 import referenceData from '../ReferenceData';
+
 import CategoryTab from '../components/CategoryTab.vue';
+
+import BarChart from '../components/BarChart.vue';
+import PantagonChart from '../components/PantagonChart.vue';
+import Test from '../components/Test.vue';
+
 export default {
   name: 'App',
   components: { CategoryTab },
@@ -65,12 +75,16 @@ export default {
       ],
     };
   },
+
   methods: {
     changeCurrentTab(i) {
       this.currentTab = i;
       console.log(i);
     },
   },
+
+  components: { BarChart, PantagonChart, Test },
+
 };
 </script>
 
