@@ -23,14 +23,12 @@
       <div class="main-title">나의 결과는?</div>
     </div>
     <BarChart />
-    <Test />
   </div>
 </template>
 
 <script>
 import referenceData from '../ReferenceData';
 import BarChart from '../components/BarChart.vue';
-import Test from '../components/Test.vue';
 export default {
   name: 'App',
   data() {
@@ -42,7 +40,7 @@ export default {
     };
   },
   methods: {},
-  components: { BarChart, Test },
+  components: { BarChart },
 };
 </script>
 

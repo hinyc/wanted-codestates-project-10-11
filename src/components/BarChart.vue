@@ -1,11 +1,10 @@
 <template>
-  <BarChart :chartData="testData" />
+  <BarChart ref="doughnutRef" :chartData="testData" :options="options" />
 </template>
 
 <script>
-// import { Chart, DoughnutController, ArcElement, Tooltip } from "chart.js";
 import { Chart, registerables } from 'chart.js';
-import { defineComponent } from 'vue';
+import { computed, defineComponent, ref } from 'vue';
 import { BarChart } from 'vue-chart-3';
 Chart.register(...registerables);
 
@@ -13,23 +12,30 @@ export default defineComponent({
   name: 'Home',
   components: { BarChart },
   setup() {
-    const testData = {
-      labels: ['Paris', 'Nîmes', 'Toulon', 'Perpignan', 'Autre'],
+    const data = ref([30, 40, 60, 70, 5]);
+    const doughnutRef = ref();
+
+    const options = ref({
+      responsive: true,
+      plugins: {
+        legend: {
+          position: 'top',
+        },
+      },
+      indexAxis: 'y',
+    });
+
+    const testData = computed(() => ({
+      labels: ['적극성', '자신감', '책임감', '개인성향', '수평사고'],
       datasets: [
         {
-          data: [30, 40, 60, 70, 5],
-          backgroundColor: [
-            '#77CEFF',
-            '#0079AF',
-            '#123E6B',
-            '#97B0C4',
-            '#A5C8ED',
-          ],
+          data: data.value,
+          backgroundColor: ['#6e3cf9'],
         },
       ],
-    };
+    }));
 
-    return { testData };
+    return { testData, doughnutRef, options };
   },
 });
 </script>
