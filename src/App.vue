@@ -1,24 +1,14 @@
 <template>
-
-  <h1>wanted-codestates-project-10-11</h1>
-  <Search />
-  <MessageBox />
-    <Main />
+  <Main />
 </template>
 
-
 <script>
-import Search from "./components/Search.vue";
-import MessageBox from "./components/MessageBox.vue";
-import Main from './pages/Main.vue'
+import Main from './pages/Main.vue';
 export default {
-  name: "App",
+  name: 'App',
   components: {
-    Search,
-    MessageBox,
-    Main
+    Main,
   },
-
 };
 </script>
 

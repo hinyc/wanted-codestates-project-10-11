@@ -1,19 +1,9 @@
 <template>
   <div id="container">
-    <div class="title flex-space-between">
-      <h2>진단결과</h2>
-      <span>다시 진단하기</span>
-    </div>
-    <div class="search-title flex-space-between">
-      <span>검색 결과 ></span>
-      <span>
-        그레이비랩
-        <button>x</button>
-      </span>
-    </div>
-    <input placeholder="기업명을 검색하세요." />
+    <Search />
+    <MessageBox />
 
- <PantagonChart />
+    <PantagonChart />
     <div class="graph">graph</div>
     <div class="tabContainer">
       <CategoryTab
@@ -21,26 +11,21 @@
         :currentTab="currentTab"
         @changeCurrentTab="changeCurrentTab"
       />
-
     </div>
     <Result />
   </div>
 </template>
 <script>
 import referenceData from '../ReferenceData';
-
 import Result from '../components/Result.vue';
-
-
 import CategoryTab from '../components/CategoryTab.vue';
-
-
 import PantagonChart from '../components/PantagonChart.vue';
-
+import Search from './components/Search.vue';
+import MessageBox from './components/MessageBox.vue';
 
 export default {
   name: 'App',
- 
+
   data() {
     return {
       user: referenceData.user,
@@ -74,7 +59,6 @@ export default {
     };
   },
 
-
   methods: {
     changeCurrentTab(i) {
       this.currentTab = i;
@@ -82,8 +66,7 @@ export default {
     },
   },
 
-  components: { BarChart, PantagonChart, Result,CategoryTab },
-
+  components: { PantagonChart, Result, CategoryTab, Search, MessageBox },
 };
 </script>
 
