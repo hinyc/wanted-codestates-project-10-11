@@ -1,11 +1,16 @@
 <template>
   <h1>wanted-codestates-project-10-11</h1>
+  <Search />
 </template>
 
 <script>
+import Search from "./components/Search.vue";
+
 export default {
-  name: 'App',
-  components: {},
+  name: "App",
+  components: {
+    Search,
+  },
 };
 </script>
 
