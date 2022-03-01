@@ -13,10 +13,12 @@
     </div>
     <input placeholder="기업명을 검색하세요." />
     <div class="graph">graph</div>
-    <div class="tabs">
-      <button class="tab">모두</button>
-      <button class="tab">본인</button>
-      <button class="tab">회사</button>
+    <div class="tabContainer">
+      <CategoryTab
+        :tabs="tabs"
+        :currentTab="currentTab"
+        @changeCurrentTab="changeCurrentTab"
+      />
     </div>
     <div class="result-title">
       <div class="sub-title">MY RESULT</div>
@@ -25,20 +27,50 @@
     <div class="result-graph">result</div>
   </div>
 </template>
-
 <script>
 import referenceData from '../ReferenceData';
+import CategoryTab from '../components/CategoryTab.vue';
 export default {
   name: 'App',
+  components: { CategoryTab },
   data() {
     return {
       user: referenceData.user,
       samsung: referenceData.samsungElectronics,
       kakao: referenceData.kakao,
       lg: referenceData.lgCNS,
+      currentTab: 0,
+      tabs: [
+        {
+          name: '모두',
+          icon: {
+            src: require('../assets/select1.png'),
+            alt: 'companyMe',
+          },
+        },
+        {
+          name: '본인',
+          icon: {
+            src: require('../assets/select2.png'),
+            alt: 'Me',
+          },
+        },
+        {
+          name: '회사',
+          icon: {
+            src: require('../assets/select3.png'),
+            alt: 'company',
+          },
+        },
+      ],
     };
   },
-  methods: {},
+  methods: {
+    changeCurrentTab(i) {
+      this.currentTab = i;
+      console.log(i);
+    },
+  },
 };
 </script>
 
@@ -49,7 +81,7 @@ export default {
 #container {
   width: 360px;
   margin: 0 auto;
-  background-color: rgba(255, 192, 203, 0.249);
+  /* background-color: rgba(255, 192, 203, 0.249); */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -85,17 +117,15 @@ input::placeholder {
   width: 100%;
   height: 381px;
 }
-.tabs {
+
+.tabContainer {
   display: flex;
-  width: 100%;
-  padding: 14px 16px;
-}
-.tabs .tab {
-  display: flex;
-  width: 100%;
   justify-content: center;
   align-items: center;
-  padding: 14px 16px;
+  width: 360px;
+  height: 84px;
+  top: 381px;
+  padding: 20px, 16px, 20px, 16px;
 }
 .result-title {
   display: flex;
