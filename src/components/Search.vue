@@ -60,32 +60,31 @@
 
 <script>
 export default {
-  name: "SearchBar",
   props: {
     msg: String,
   },
   data() {
     return {
-      inputValue: "",
-      selectCompany: "그레이비랩",
+      inputValue: '',
+      selectCompany: '그레이비랩',
     };
   },
   methods: {
     onEnterHandler() {
       // 회사 이름 데이터
-      const companies = ["삼성전자", "카카오", "LG CNS"];
+      const companies = ['삼성전자', '카카오', 'LG CNS'];
 
       if (companies.indexOf(this.inputValue) !== -1) {
         this.selectCompany = this.inputValue;
-        document.querySelector(".company-name").blur();
+        document.querySelector('.company-name').blur();
       } else {
         // '기업 정보가 없습니다' 메시지 창 띄우기
-        console.log("기업 정보가 없습니다");
+        console.log('기업 정보가 없습니다');
       }
     },
     removeSelectedCompany() {
       if (this.selectCompany) {
-        this.selectCompany = "";
+        this.selectCompany = '';
       }
     },
   },
@@ -104,7 +103,7 @@ export default {
   width: 328px;
   height: auto;
   margin: 20px 16px;
-  font-family: "Noto Sans";
+  font-family: 'Noto Sans';
 }
 .search-container .top {
   width: 100%;
