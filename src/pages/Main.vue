@@ -10,7 +10,7 @@
     />
     <MessageBox v-if="isMessageVisible" />
 
-    <PantagonChart :selectCompany="selectCompany" />
+    <PantagonChart :selectCompany="selectCompany" :currentTab="currentTab" />
 
     <div class="tabContainer">
       <CategoryTab

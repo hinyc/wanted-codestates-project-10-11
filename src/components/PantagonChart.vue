@@ -23,7 +23,7 @@ export default defineComponent({
       ],
       datasets: [
         {
-          data: referenceData['삼성'],
+          data: [0, 0, 0, 0, 0],
           backgroundColor: 'rgba(255, 193, 74, 0.32)',
           borderColor: ' #FFD335',
           pointRadius: 0,
@@ -66,6 +66,7 @@ export default defineComponent({
   },
   props: {
     selectCompany: String,
+    currentTab: Number,
   },
   data() {
     return {
@@ -92,21 +93,43 @@ export default defineComponent({
     };
     scale.grid.borderDash = [4];
   },
-  mounted() {
+  beforeUpdate() {
+    const convertor = {
+      table: {
+        0: (selectedCompany) => {
+          this.matchData.datasets[1].data = [...referenceData['user']];
+          this.matchData.datasets[0].data = [...referenceData[selectedCompany]];
+        },
+        1: (selectedCompany) => {
+          console.log(selectedCompany);
+          this.matchData.datasets[1].data = [...referenceData['user']];
+          this.matchData.datasets[0].data = [0, 0, 0, 0, 0];
+        },
+        2: (selectedCompany) => {
+          this.matchData.datasets[1].data = [0, 0, 0, 0, 0];
+          this.matchData.datasets[0].data = [...referenceData[selectedCompany]];
+        },
+      },
+      convert(selectedTabNumber, selectedCompany) {
+        this.table[selectedTabNumber](selectedCompany);
+      },
+    };
     switch (this.selectCompany) {
       case '삼성전자':
-        this.matchData.datasets[0].data = [...referenceData['삼성']];
+        convertor.convert(this.currentTab, '삼성');
         break;
       case '카카오':
-        this.matchData.datasets[0].data = [...referenceData['카카오']];
+        convertor.convert(this.currentTab, '카카오');
         break;
       case 'LG CNS':
-        this.matchData.datasets[0].data = [...referenceData['lg']];
+        convertor.convert(this.currentTab, 'lg');
         break;
       default:
+        this.matchData.datasets[1].data = [...referenceData['user']];
         this.matchData.datasets[0].data = [0, 0, 0, 0, 0];
         break;
     }
+    console.log();
   },
 });
 </script>
