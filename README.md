@@ -4,9 +4,6 @@
 
 ### 📎 [과제링크](https://flamboyant-borg-cf3d11.netlify.app/)
 
-![스크린샷 2022-03-02 오후 1 46 52](https://user-images.githubusercontent.com/85574104/156296921-4b10232c-4e60-406f-b8c3-acb35b8912e0.png)
-
-<br />
 
 ![스크린샷 2022-03-02 오후 1 46 52](https://user-images.githubusercontent.com/85574104/156296921-4b10232c-4e60-406f-b8c3-acb35b8912e0.png)
 
