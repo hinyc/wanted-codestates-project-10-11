@@ -29,6 +29,13 @@ export default defineComponent({
     userScore: Number,
     companyScore: Number,
   },
+  data() {
+    return {
+      currentUserScore: this.userScore,
+      currentCompanyScore: this.companyScore,
+      matchData: 6,
+    };
+  },
   methods: {
     test() {
       console.log(this.userScore, this.companyScore, this.currentData);
@@ -36,8 +43,8 @@ export default defineComponent({
   },
 
   setup() {
-    const data = ref([-2, 3]);
-
+    const data = ref([8, -3]);
+    console.log('data', data.value);
     const doughnutRef = ref();
     const options = ref({
       responsive: true,
@@ -83,10 +90,11 @@ export default defineComponent({
 
     return { testData, doughnutRef, options };
   },
-  data() {
-    return {
-      currentData: this.testData.datasets.data,
-    };
+  beforeMount() {
+    // this.testData.datasets.data
+
+    this.testData.datasets[0].data[0] = this.userScore;
+    this.testData.datasets[0].data[1] = this.companyScore;
   },
 });
 </script>

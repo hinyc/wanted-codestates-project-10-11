@@ -17,12 +17,10 @@
     />
     <MessageBox v-if="isMessageVisible" />
 
-
     <div class="catBox">
       <img src="../assets/catImg.png" class="catImg" />
-    <PantagonChart :selectCompany="selectCompany" :currentTab="currentTab" />
+      <PantagonChart :selectCompany="selectCompany" :currentTab="currentTab" />
     </div>
-
 
     <div class="tabContainer">
       <CategoryTab
@@ -31,7 +29,7 @@
         @changeCurrentTab="changeCurrentTab"
       />
     </div>
-    <Result :searchData="searchData" />
+    <Result :selectCompany="selectCompany" />
   </div>
 </template>
 <script>
@@ -232,5 +230,4 @@ input::placeholder {
   transform: translate(-50%, -50%);
   z-index: 9;
 }
-
 </style>
