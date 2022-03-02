@@ -90,10 +90,13 @@ export default defineComponent({
 
     return { testData, doughnutRef, options };
   },
+  beforeCreate() {},
+  beforeUpdate() {},
   beforeMount() {
     // this.testData.datasets.data
 
-    this.testData.datasets[0].data[0] = this.userScore;
+    this.testData.datasets[0].data[0] =
+      this.userScore > 5 ? this.userScore * -1 : this.userScore;
     this.testData.datasets[0].data[1] = this.companyScore;
   },
 });
