@@ -1,6 +1,7 @@
 <template>
   <div id="container">
 
+
   <NavBar />
     <Search
       :inputValue="inputValue"
@@ -11,7 +12,8 @@
     />
     <MessageBox v-if="isMessageVisible" />
 
-    <PantagonChart />
+     <PantagonChart :searchData="searchData" />
+
     <div class="graph">graph</div>
     <div class="tabContainer">
       <CategoryTab
@@ -37,6 +39,7 @@ export default {
 
   data() {
     return {
+      searchData: '카카오',
       user: referenceData.user,
       samsung: referenceData.samsungElectronics,
       kakao: referenceData.kakao,
