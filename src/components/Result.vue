@@ -22,6 +22,7 @@
           :userScore="user[idx]"
           :companyScore="getCompanyScore(idx)"
           :selectCompany="selectCompany"
+          :currentTab="currentTab"
         />
       </div>
       <div class="tendency right" :style="selectTendencyColor(10 - score)">
@@ -87,6 +88,7 @@ export default {
   components: { BarChart },
   props: {
     selectCompany: String,
+    currentTab: Number,
   },
 
   beforeUpdate() {
