@@ -14,10 +14,7 @@
         {{ tendencies[idx][0] }}
       </div>
       <div class="chart-wrapper">
-        <BarChart
-          :userScore="user[idx]"
-          :companyScore="referenceData[searchData][idx]"
-        />
+        <BarChart :userScore="user[idx]" :companyScore="getCompanyScore(idx)" />
       </div>
       <div class="tendency right" :style="selectTendencyColor(10 - score)">
         {{ tendencies[idx][1] }}
@@ -49,7 +46,7 @@ export default {
   data() {
     return {
       user: referenceData.user,
-      referenceData: referenceData,
+      companyData: undefined,
       tendencies: tendencies,
     };
   },
@@ -75,10 +72,35 @@ export default {
       }
       return color;
     },
+    getCompanyScore(idx) {
+      if (!this.companyData) return 0;
+      return this.companyData[idx];
+    },
   },
   components: { BarChart },
   props: {
-    searchData: String,
+    selectCompany: String,
+  },
+  beforeUpdate() {
+    switch (this.selectCompany) {
+      case '삼성전자':
+        console.log('check', referenceData.삼성);
+        this.companyData = referenceData.삼성;
+        break;
+      case '카카오':
+        console.log('check', referenceData.카카오);
+        this.companyData = referenceData.카카오;
+
+        break;
+      case 'LG CNS':
+        console.log('check', referenceData.lg);
+        this.companyData = referenceData.lg;
+        break;
+      default:
+        this.matchData.datasets[1].data = [...referenceData['user']];
+        this.matchData.datasets[0].data = [0, 0, 0, 0, 0];
+        break;
+    }
   },
 };
 </script>
