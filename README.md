@@ -49,9 +49,11 @@
 ## 구현한 기능 목록
 <details>
   <summary>홍인열</summary>
-   <div> - vue-chart.js를 이용한 bar-chart구현</div>
-   <div> - 선택한 기업에 따른 기업 데이터 결과 보여주는 기능 구현</div>
-   <div> - 탭 선택에 따라 데이터 필터링 기능</div>
+  <li>
+   <ol> vue-chart.js를 이용한 bar-chart구현</ol>
+   <ol> 선택한 기업에 따른 기업 데이터 결과 보여주는 기능 구현</ol>
+   <ol> 탭 선택에 따라 데이터 필터링 기능</ol>
+  </li>
 </details>
 <details>
   <summary>김주영</summary>
