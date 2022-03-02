@@ -1,10 +1,11 @@
 <template>
   <BarChart
+    @click="test"
     id="bar-chart"
     ref="doughnutRef"
     :chartData="testData"
     :options="options"
-    v-bind:style="{
+    :style="{
       width: '110px',
       height: '50px',
       alignItems: 'center',
@@ -21,12 +22,23 @@ Chart.register(...registerables);
 
 export default defineComponent({
   name: 'Home',
+
   components: { BarChart },
 
-  setup() {
-    const data = ref([-10, 4]);
-    const doughnutRef = ref();
+  props: {
+    userScore: Number,
+    companyScore: Number,
+  },
+  methods: {
+    test() {
+      console.log(this.userScore, this.companyScore, this.currentData);
+    },
+  },
 
+  setup() {
+    const data = ref([-2, 3]);
+
+    const doughnutRef = ref();
     const options = ref({
       responsive: true,
       plugins: {
@@ -37,7 +49,6 @@ export default defineComponent({
       indexAxis: 'y',
       scales: {
         y: {
-          backgroundColor: 'black',
           display: false,
           grid: {
             display: false,
@@ -72,8 +83,10 @@ export default defineComponent({
 
     return { testData, doughnutRef, options };
   },
-  props: {
-    abc: String,
+  data() {
+    return {
+      currentData: this.testData.datasets.data,
+    };
   },
 });
 </script>
@@ -82,5 +95,10 @@ export default defineComponent({
 #bar-chart {
   display: block;
   width: 100px;
+}
+.check {
+  position: fixed;
+  width: 200px;
+  z-index: 9;
 }
 </style>

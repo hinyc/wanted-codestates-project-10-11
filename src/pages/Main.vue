@@ -31,7 +31,7 @@
         @changeCurrentTab="changeCurrentTab"
       />
     </div>
-    <Result />
+    <Result :searchData="searchData" />
   </div>
 </template>
 <script>
