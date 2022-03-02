@@ -14,7 +14,11 @@
         {{ tendencies[idx][0] }}
       </div>
       <div class="chart-wrapper">
-        <BarChart :userScore="user[idx]" :companyScore="getCompanyScore(idx)" />
+        <BarChart
+          :userScore="user[idx]"
+          :companyScore="getCompanyScore(idx)"
+          :selectCompany="selectCompany"
+        />
       </div>
       <div class="tendency right" :style="selectTendencyColor(10 - score)">
         {{ tendencies[idx][1] }}
@@ -40,7 +44,6 @@ const tendencies = [
   ['개인성향', '조직성향'],
   ['수평사고', '위계사고'],
 ];
-console.log(referenceData);
 export default {
   name: 'App',
   data() {
@@ -81,24 +84,23 @@ export default {
   props: {
     selectCompany: String,
   },
+
   beforeUpdate() {
     switch (this.selectCompany) {
       case '삼성전자':
-        console.log('check', referenceData.삼성);
-        this.companyData = referenceData.삼성;
+        console.log('check', referenceData.삼성전자);
+        this.companyData = referenceData.삼성전자;
         break;
       case '카카오':
-        console.log('check', referenceData.카카오);
         this.companyData = referenceData.카카오;
 
         break;
-      case 'LG CNS':
-        console.log('check', referenceData.lg);
-        this.companyData = referenceData.lg;
+      case 'LG':
+        console.log('check', referenceData.LG);
+        this.companyData = referenceData.LG;
         break;
       default:
-        this.matchData.datasets[1].data = [...referenceData['user']];
-        this.matchData.datasets[0].data = [0, 0, 0, 0, 0];
+        this.companyData = [0, 0, 0, 0, 0];
         break;
     }
   },

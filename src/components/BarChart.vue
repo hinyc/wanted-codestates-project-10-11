@@ -28,6 +28,7 @@ export default defineComponent({
   props: {
     userScore: Number,
     companyScore: Number,
+    selectCompany: String,
   },
   data() {
     return {
@@ -43,8 +44,7 @@ export default defineComponent({
   },
 
   setup() {
-    const data = ref([8, -3]);
-    console.log('data', data.value);
+    const data = ref([0, 0]);
     const doughnutRef = ref();
     const options = ref({
       responsive: true,
@@ -90,11 +90,30 @@ export default defineComponent({
 
     return { testData, doughnutRef, options };
   },
+  // beforeCreate() {
+  //   console.log('비포크리에이트', this.companyScore, this.data);
+  // },
+  // created() {
+  //   this.testData.datasets[0].data[1] =
+  //     this.companyScore > 5 ? this.companyScore * -1 : this.companyScore;
+  //   console.log('크리에이트', this.companyScore, this.data);
+  // },
+  beforeUpdate() {
+    this.testData.datasets[0].data[0] =
+      this.userScore > 5 ? this.userScore * -1 : this.userScore;
+
+    if (!this.selectCompany) {
+      this.testData.datasets[0].data[1] = 0;
+    } else {
+      this.testData.datasets[0].data[1] =
+        this.companyScore > 5 ? this.companyScore * -1 : this.companyScore;
+    }
+  },
   beforeMount() {
     // this.testData.datasets.data
 
-    this.testData.datasets[0].data[0] = this.userScore;
-    this.testData.datasets[0].data[1] = this.companyScore;
+    this.testData.datasets[0].data[0] =
+      this.userScore > 5 ? this.userScore * -1 : this.userScore;
   },
 });
 </script>

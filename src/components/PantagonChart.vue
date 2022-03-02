@@ -116,13 +116,13 @@ export default defineComponent({
     };
     switch (this.selectCompany) {
       case '삼성전자':
-        convertor.convert(this.currentTab, '삼성');
+        convertor.convert(this.currentTab, '삼성전자');
         break;
       case '카카오':
         convertor.convert(this.currentTab, '카카오');
         break;
-      case 'LG CNS':
-        convertor.convert(this.currentTab, 'lg');
+      case 'LG':
+        convertor.convert(this.currentTab, 'LG');
         break;
       default:
         this.matchData.datasets[1].data = [...referenceData['user']];

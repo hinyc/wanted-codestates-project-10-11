@@ -52,7 +52,7 @@ export default {
       kakao: referenceData.kakao,
       lg: referenceData.lgCNS,
       selectCompany: '',
-      companies: ['삼성전자', '카카오', 'LG CNS'],
+      companies: ['삼성전자', '카카오', 'LG'],
       inputValue: '',
       currentTab: 0,
       tabs: [
@@ -87,7 +87,6 @@ export default {
   methods: {
     changeCurrentTab(i) {
       this.currentTab = i;
-      console.log(i);
     },
     showMessage() {
       // 이전 이벤트로 인해 메시지창이 이미 띄워져 있으면 이벤트 실행하지 않고 리턴
@@ -117,7 +116,6 @@ export default {
         // this.inputValue = '';
         // this.selectCompany = '';
       }
-      console.log(this.inputValue);
     },
     resetSearch() {
       this.selectCompany = '';
@@ -156,6 +154,7 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-bottom: 50px;
 }
 .title {
   height: 72px;
@@ -217,6 +216,7 @@ input::placeholder {
   width: 100%;
   height: auto;
   position: relative;
+  padding: 0 20px;
 }
 
 .catImg {
