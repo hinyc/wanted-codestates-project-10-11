@@ -158,6 +158,7 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-bottom: 50px;
 }
 .title {
   height: 72px;
@@ -219,6 +220,7 @@ input::placeholder {
   width: 100%;
   height: auto;
   position: relative;
+  padding: 0 20px;
 }
 
 .catImg {
