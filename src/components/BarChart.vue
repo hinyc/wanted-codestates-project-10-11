@@ -4,6 +4,12 @@
     ref="doughnutRef"
     :chartData="testData"
     :options="options"
+    v-bind:style="{
+      width: '110px',
+      height: '50px',
+      alignItems: 'center',
+      top: '5px',
+    }"
   />
 </template>
 
@@ -16,8 +22,9 @@ Chart.register(...registerables);
 export default defineComponent({
   name: 'Home',
   components: { BarChart },
+
   setup() {
-    const data = ref([-8, -10, -10, 3, -6]);
+    const data = ref([-10, 4]);
     const doughnutRef = ref();
 
     const options = ref({
@@ -56,8 +63,8 @@ export default defineComponent({
       datasets: [
         {
           data: data.value,
-          backgroundColor: ['#6e3cf9'],
-          barThickness: 10,
+          backgroundColor: ['#6e3cf9', '#ffd966'],
+          barThickness: 5,
           bar: { backgroundColor: 'red' },
         },
       ],
@@ -65,12 +72,15 @@ export default defineComponent({
 
     return { testData, doughnutRef, options };
   },
+  props: {
+    abc: String,
+  },
 });
 </script>
 
 <style>
 #bar-chart {
-  /* width: 100px;
-  height: 200px; */
+  display: block;
+  width: 100px;
 }
 </style>
