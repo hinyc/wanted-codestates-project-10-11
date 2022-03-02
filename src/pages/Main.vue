@@ -7,6 +7,13 @@
       :selectCompany="selectCompany"
       :resetSearch="resetSearch"
       @showMessage="showMessage"
+      @showDropdown="showDropdown"
+      @hideDropdown="hideDropdown"
+    />
+    <AutoComplete
+      v-if="isDropdownVisible"
+      :companies="companies"
+      @setInputValue="setInputValue"
     />
     <MessageBox v-if="isMessageVisible" />
 
@@ -35,6 +42,7 @@ import PantagonChart from '../components/PantagonChart.vue';
 import Search from '../components/Search.vue';
 import MessageBox from '../components/MessageBox.vue';
 import NavBar from '../components/NavBar.vue';
+import AutoComplete from '../components/AutoComplete.vue';
 
 export default {
   name: 'App',
@@ -74,6 +82,7 @@ export default {
       ],
       isMessageVisible: false,
       msgTimeoutID: {},
+      isDropdownVisible: false,
     };
   },
 
@@ -97,6 +106,7 @@ export default {
       }, 1500);
     },
     setInputValue(word) {
+      // 기업명을 검색하면
       word = word.toUpperCase();
       if (this.companies.indexOf(word) !== -1) {
         this.inputValue = word;
@@ -107,12 +117,21 @@ export default {
         // '기업 정보가 없습니다' 메시지 창 띄우기
         this.showMessage();
         // this.inputValue = '';
+        // this.selectCompany = '';
       }
       console.log(this.inputValue);
     },
     resetSearch() {
       this.selectCompany = '';
       this.inputValue = '';
+    },
+    showDropdown() {
+      this.isDropdownVisible = true;
+    },
+    hideDropdown() {
+      setTimeout(() => {
+        this.isDropdownVisible = false;
+      }, 150);
     },
   },
 
@@ -123,6 +142,7 @@ export default {
     Result,
     CategoryTab,
     NavBar,
+    AutoComplete,
   },
 };
 </script>
