@@ -23,14 +23,14 @@ export default defineComponent({
       ],
       datasets: [
         {
-          data: referenceData[1]['삼성'],
+          data: referenceData['삼성'],
           backgroundColor: 'rgba(255, 193, 74, 0.32)',
           borderColor: ' #FFD335',
           pointRadius: 0,
           borderWidth: 2,
         },
         {
-          data: referenceData[0]['user'],
+          data: referenceData['user'],
           backgroundColor: 'rgba(110, 60, 249, 0.32)',
           borderColor: ' #6E3CF9',
           pointRadius: 0,
@@ -95,13 +95,13 @@ export default defineComponent({
   mounted() {
     switch (this.searchData) {
       case '삼성':
-        this.matchData.datasets[0].data = [...referenceData[1]['삼성']];
+        this.matchData.datasets[0].data = [...referenceData['삼성']];
         break;
       case '카카오':
-        this.matchData.datasets[0].data = [...referenceData[2]['카카오']];
+        this.matchData.datasets[0].data = [...referenceData['카카오']];
         break;
       case 'lg':
-        this.matchData.datasets[0].data = [...referenceData[3]['lg']];
+        this.matchData.datasets[0].data = [...referenceData['lg']];
         break;
       default:
         this.matchData.datasets[0].data = [0, 0, 0, 0, 0];

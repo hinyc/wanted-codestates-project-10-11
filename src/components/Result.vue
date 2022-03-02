@@ -41,8 +41,8 @@ export default {
   data() {
     return {
       user: referenceData.user,
-      samsung: referenceData.samsung,
-      kakao: referenceData.kakao,
+      samsung: referenceData.삼성,
+      kakao: referenceData.카카오,
       lg: referenceData.lg,
       tendencies: tendencies,
     };
