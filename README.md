@@ -33,9 +33,9 @@
 
 | 이름                                   | 직책 | 역할                                           |
 | ------------------------------------ | ---- | ------------------------------------------------ |
-|🏄🏻‍♂️ [홍인열](https://github.com/hinyc)      | 팀장 |보일러플레이트 작성, 테스트 쪼개기, bar-chart 구현    |
+|🏄🏻‍♂️ [홍인열](https://github.com/hinyc)   | 팀장 |보일러플레이트 작성, 테스트 쪼개기, bar-chart 구현    |
 |[김주영](https://github.com/juo1221)    | 팀원 |                                                   |
-|[복지호](https://github.com/Jiho31)     | 팀원 |                                                   |
+|🐮 [복지호](https://github.com/Jiho31)  | 팀원 |  검색창에서 검색 및 자동완성 기능, 메시지 창 띄우기 구현       |
 |[우혁주](https://github.com/Space-Belt) | 팀원 |                                                   |
 |[전용태](https://github.com/yong313)    | 팀원 |                                                   |
 ### 기술 스텍 🛠
@@ -61,7 +61,11 @@
 </details>
 <details>
   <summary>복지호</summary>
-  -그래프
+  <ul>
+    <li> 데이터 목록에 없는 기업명을 검색할 경우, 화면 중앙에 메시지창을 띄웠다가 서서히 사라지는 기능 </li>
+    <li> 검색창에 기업명 입력시 자동완성 </li>
+    <li> 검색창에 입력된 값이 데이터 목록에 있는 기업명일 경우, `selectCompany` 상태 값 변경 </li>
+  </ul>
 </details>
 <details>
   <summary>우혁주</summary>
