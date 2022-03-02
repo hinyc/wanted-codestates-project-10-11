@@ -5,7 +5,7 @@
 ### 📎 [과제링크](https://flamboyant-borg-cf3d11.netlify.app/)
 
 <div align="center">
-<img width="400px" src="https://user-images.githubusercontent.com/87487161/156331090-186eb15a-0a46-437f-afe8-b6218c749707.png"/>
+<img width="400px" src="https://user-images.githubusercontent.com/87487161/156356350-9cd8432b-fd26-49fe-9877-5b2354c82a58.gif"/>
 </div>
 <br />
 
