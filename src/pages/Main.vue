@@ -1,8 +1,6 @@
 <template>
   <div id="container">
-
-
-  <NavBar />
+    <NavBar />
     <Search
       :inputValue="inputValue"
       @setInputValue="setInputValue"
@@ -12,9 +10,8 @@
     />
     <MessageBox v-if="isMessageVisible" />
 
-     <PantagonChart :searchData="searchData" />
+    <PantagonChart :searchData="searchData" />
 
-    <div class="graph">graph</div>
     <div class="tabContainer">
       <CategoryTab
         :tabs="tabs"
@@ -114,7 +111,14 @@ export default {
     },
   },
 
-  components: { Search, MessageBox, PantagonChart, Result, CategoryTab, NavBar },
+  components: {
+    Search,
+    MessageBox,
+    PantagonChart,
+    Result,
+    CategoryTab,
+    NavBar,
+  },
 };
 </script>
 
