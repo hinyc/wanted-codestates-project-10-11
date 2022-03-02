@@ -1,8 +1,19 @@
 <template>
   <div id="container">
-    <Search />
-    <MessageBox />
-    <PantagonChart :searchData="searchData" />
+
+
+  <NavBar />
+    <Search
+      :inputValue="inputValue"
+      @setInputValue="setInputValue"
+      :selectCompany="selectCompany"
+      :resetSearch="resetSearch"
+      @showMessage="showMessage"
+    />
+    <MessageBox v-if="isMessageVisible" />
+
+     <PantagonChart :searchData="searchData" />
+
     <div class="graph">graph</div>
     <div class="tabContainer">
       <CategoryTab
@@ -21,6 +32,7 @@ import CategoryTab from '../components/CategoryTab.vue';
 import PantagonChart from '../components/PantagonChart.vue';
 import Search from '../components/Search.vue';
 import MessageBox from '../components/MessageBox.vue';
+import NavBar from '../components/NavBar.vue';
 
 export default {
   name: 'App',
@@ -32,6 +44,9 @@ export default {
       samsung: referenceData.samsungElectronics,
       kakao: referenceData.kakao,
       lg: referenceData.lgCNS,
+      selectCompany: '',
+      companies: ['삼성전자', '카카오', 'LG CNS'],
+      inputValue: '',
       currentTab: 0,
       tabs: [
         {
@@ -56,6 +71,8 @@ export default {
           },
         },
       ],
+      isMessageVisible: false,
+      msgTimeoutID: {},
     };
   },
 
@@ -64,9 +81,40 @@ export default {
       this.currentTab = i;
       console.log(i);
     },
+    showMessage() {
+      // 이전 이벤트로 인해 메시지창이 이미 띄워져 있으면 이벤트 실행하지 않고 리턴
+      if (this.isMessageVisible) {
+        return;
+      }
+      if (this.msgTimeoutID) {
+        clearTimeout(this.msgTimeoutID);
+      }
+      this.isMessageVisible = true;
+
+      this.msgTimeoutID = setTimeout(() => {
+        this.isMessageVisible = !this.isMessageVisible;
+      }, 1500);
+    },
+    setInputValue(word) {
+      word = word.toUpperCase();
+      if (this.companies.indexOf(word) !== -1) {
+        this.inputValue = word;
+        this.selectCompany = word;
+        this.changeCurrentTab(0);
+        document.querySelector('.company-name').blur();
+      } else {
+        // '기업 정보가 없습니다' 메시지 창 띄우기
+        this.showMessage();
+        // this.inputValue = '';
+      }
+    },
+    resetSearch() {
+      this.selectCompany = '';
+      this.inputValue = '';
+    },
   },
 
-  components: { Search, MessageBox, PantagonChart, Result, CategoryTab },
+  components: { Search, MessageBox, PantagonChart, Result, CategoryTab, NavBar },
 };
 </script>
 
