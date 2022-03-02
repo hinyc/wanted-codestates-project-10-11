@@ -81,20 +81,21 @@ export default {
   props: {
     selectCompany: String,
   },
+
   beforeUpdate() {
     switch (this.selectCompany) {
       case '삼성전자':
-        console.log('check', referenceData.삼성);
-        this.companyData = referenceData.삼성;
+        console.log('check', referenceData.삼성전자);
+        this.companyData = referenceData.삼성전자;
         break;
       case '카카오':
         console.log('check', referenceData.카카오);
         this.companyData = referenceData.카카오;
 
         break;
-      case 'LG CNS':
-        console.log('check', referenceData.lg);
-        this.companyData = referenceData.lg;
+      case 'LG':
+        console.log('check', referenceData.LG);
+        this.companyData = referenceData.LG;
         break;
       default:
         this.matchData.datasets[1].data = [...referenceData['user']];

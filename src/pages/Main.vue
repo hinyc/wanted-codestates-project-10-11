@@ -52,7 +52,7 @@ export default {
       kakao: referenceData.kakao,
       lg: referenceData.lgCNS,
       selectCompany: '',
-      companies: ['삼성전자', '카카오', 'LG CNS'],
+      companies: ['삼성전자', '카카오', 'LG'],
       inputValue: '',
       currentTab: 0,
       tabs: [
