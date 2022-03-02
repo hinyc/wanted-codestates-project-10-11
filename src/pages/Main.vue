@@ -1,5 +1,7 @@
 <template>
   <div id="container">
+
+  <NavBar />
     <Search
       :inputValue="inputValue"
       @setInputValue="setInputValue"
@@ -8,6 +10,7 @@
       @showMessage="showMessage"
     />
     <MessageBox v-if="isMessageVisible" />
+
     <PantagonChart />
     <div class="graph">graph</div>
     <div class="tabContainer">
@@ -27,6 +30,7 @@ import CategoryTab from '../components/CategoryTab.vue';
 import PantagonChart from '../components/PantagonChart.vue';
 import Search from '../components/Search.vue';
 import MessageBox from '../components/MessageBox.vue';
+import NavBar from '../components/NavBar.vue';
 
 export default {
   name: 'App',
@@ -107,7 +111,7 @@ export default {
     },
   },
 
-  components: { Search, MessageBox, PantagonChart, Result, CategoryTab },
+  components: { Search, MessageBox, PantagonChart, Result, CategoryTab, NavBar },
 };
 </script>
 
