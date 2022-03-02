@@ -23,7 +23,7 @@ export default defineComponent({
       ],
       datasets: [
         {
-          data: [0, 0, 0, 0, 0],
+          data: null,
           backgroundColor: 'rgba(255, 193, 74, 0.32)',
           borderColor: ' #FFD335',
           pointRadius: 0,
@@ -100,36 +100,28 @@ export default defineComponent({
           this.matchData.datasets[1].data = [...referenceData['user']];
           this.matchData.datasets[0].data = [...referenceData[selectedCompany]];
         },
-        1: (selectedCompany) => {
-          console.log(selectedCompany);
+        1: () => {
           this.matchData.datasets[1].data = [...referenceData['user']];
-          this.matchData.datasets[0].data = [0, 0, 0, 0, 0];
+          this.matchData.datasets[0].data = null;
         },
         2: (selectedCompany) => {
-          this.matchData.datasets[1].data = [0, 0, 0, 0, 0];
+          this.matchData.datasets[1].data = null;
           this.matchData.datasets[0].data = [...referenceData[selectedCompany]];
         },
       },
       convert(selectedTabNumber, selectedCompany) {
-        this.table[selectedTabNumber](selectedCompany);
+        if (!this.table[selectedTabNumber])
+          throw `invalid selectedTabNumber : ${selectedTabNumber}`;
+        selectedCompany
+          ? this.table[selectedTabNumber](selectedCompany)
+          : this.table[1]();
       },
     };
-    switch (this.selectCompany) {
-      case '삼성전자':
-        convertor.convert(this.currentTab, '삼성전자');
-        break;
-      case '카카오':
-        convertor.convert(this.currentTab, '카카오');
-        break;
-      case 'LG':
-        convertor.convert(this.currentTab, 'LG');
-        break;
-      default:
-        this.matchData.datasets[1].data = [...referenceData['user']];
-        this.matchData.datasets[0].data = [0, 0, 0, 0, 0];
-        break;
+    try {
+      convertor.convert(this.currentTab, this.selectCompany);
+    } catch (e) {
+      console.log(e);
     }
-    console.log();
   },
 });
 </script>
