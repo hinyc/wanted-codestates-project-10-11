@@ -108,10 +108,6 @@ export default defineComponent({
       this.testData.datasets[0].data[1] =
         this.companyScore > 5 ? this.companyScore * -1 : this.companyScore;
     }
-
-    // this.testData.datasets[0].data[1] = 0;
-    console.log('비포업데이트', this.companyScore);
-    console.log(this.selectCompany, !!this.selectCompany);
   },
   beforeMount() {
     // this.testData.datasets.data

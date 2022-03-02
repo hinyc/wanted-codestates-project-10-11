@@ -92,7 +92,6 @@ export default {
         this.companyData = referenceData.삼성전자;
         break;
       case '카카오':
-        console.log('check', referenceData.카카오);
         this.companyData = referenceData.카카오;
 
         break;
@@ -101,8 +100,7 @@ export default {
         this.companyData = referenceData.LG;
         break;
       default:
-        this.matchData.datasets[1].data = [...referenceData['user']];
-        this.matchData.datasets[0].data = [0, 0, 0, 0, 0];
+        this.companyData = [0, 0, 0, 0, 0];
         break;
     }
   },
