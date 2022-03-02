@@ -65,7 +65,7 @@ export default defineComponent({
     return { testData };
   },
   props: {
-    searchData: String,
+    selectCompany: String,
   },
   data() {
     return {
@@ -93,14 +93,14 @@ export default defineComponent({
     scale.grid.borderDash = [4];
   },
   mounted() {
-    switch (this.searchData) {
-      case '삼성':
+    switch (this.selectCompany) {
+      case '삼성전자':
         this.matchData.datasets[0].data = [...referenceData['삼성']];
         break;
       case '카카오':
         this.matchData.datasets[0].data = [...referenceData['카카오']];
         break;
-      case 'lg':
+      case 'LG CNS':
         this.matchData.datasets[0].data = [...referenceData['lg']];
         break;
       default:

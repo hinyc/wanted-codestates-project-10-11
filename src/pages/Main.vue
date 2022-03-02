@@ -10,7 +10,7 @@
     />
     <MessageBox v-if="isMessageVisible" />
 
-    <PantagonChart :searchData="searchData" />
+    <PantagonChart :selectCompany="selectCompany" />
 
     <div class="tabContainer">
       <CategoryTab
@@ -36,7 +36,6 @@ export default {
 
   data() {
     return {
-      searchData: '카카오',
       user: referenceData.user,
       samsung: referenceData.samsungElectronics,
       kakao: referenceData.kakao,
@@ -104,6 +103,7 @@ export default {
         this.showMessage();
         // this.inputValue = '';
       }
+      console.log(this.inputValue);
     },
     resetSearch() {
       this.selectCompany = '';
