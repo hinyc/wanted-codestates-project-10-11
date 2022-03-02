@@ -73,6 +73,16 @@ export default defineComponent({
       matchData: this.testData,
     };
   },
+  methods: {
+    show(idx) {
+      this.matchData.datasets[idx].fill = true;
+      this.matchData.datasets[idx].showLine = true;
+    },
+    hide(idx) {
+      this.matchData.datasets[idx].fill = false;
+      this.matchData.datasets[idx].showLine = false;
+    },
+  },
   beforeMount() {
     Chart.defaults.hover = { mode: null };
     const { plugins, scale } = Chart.defaults;
@@ -85,6 +95,7 @@ export default defineComponent({
       style: 'normal',
       weight: 'bold',
     };
+    console.log(scale);
     scale.ticks = {
       max: 10,
       min: 0,
@@ -99,14 +110,18 @@ export default defineComponent({
         0: (selectedCompany) => {
           this.matchData.datasets[1].data = [...referenceData['user']];
           this.matchData.datasets[0].data = [...referenceData[selectedCompany]];
+          this.show(1);
+          this.show(0);
         },
         1: () => {
           this.matchData.datasets[1].data = [...referenceData['user']];
-          this.matchData.datasets[0].data = null;
+          this.show(1);
+          this.hide(0);
         },
         2: (selectedCompany) => {
-          this.matchData.datasets[1].data = null;
           this.matchData.datasets[0].data = [...referenceData[selectedCompany]];
+          this.show(0);
+          this.hide(1);
         },
       },
       convert(selectedTabNumber, selectedCompany) {
