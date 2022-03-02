@@ -4,7 +4,6 @@
 
 <script>
 export default {
-  name: "MessageBox",
   data() {
     return {};
   },
@@ -30,5 +29,18 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+
+  animation: fadeOut 1.5s;
+}
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
 }
 </style>

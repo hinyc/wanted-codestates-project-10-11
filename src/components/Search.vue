@@ -51,7 +51,7 @@
         class="company-name"
         type="text"
         placeholder="기업명을 검색하세요"
-        v-model="inputValue"
+        :value="inputValue"
         @keyup.enter="onEnterHandler"
       />
     </div>
@@ -60,32 +60,14 @@
 
 <script>
 export default {
-  props: {
-    msg: String,
-  },
-  data() {
-    return {
-      inputValue: '',
-      selectCompany: '그레이비랩',
-    };
-  },
+  props: ['showMessage', 'inputValue', 'selectCompany', 'resetSearch'],
   methods: {
-    onEnterHandler() {
-      // 회사 이름 데이터
-      const companies = ['삼성전자', '카카오', 'LG CNS'];
-
-      if (companies.indexOf(this.inputValue) !== -1) {
-        this.selectCompany = this.inputValue;
-        document.querySelector('.company-name').blur();
-      } else {
-        // '기업 정보가 없습니다' 메시지 창 띄우기
-        console.log('기업 정보가 없습니다');
-      }
+    onEnterHandler(e) {
+      this.$emit('setInputValue', e.target.value);
+      document.querySelector('.company-name').blur();
     },
     removeSelectedCompany() {
-      if (this.selectCompany) {
-        this.selectCompany = '';
-      }
+      this.resetSearch();
     },
   },
 };
@@ -111,13 +93,10 @@ export default {
   justify-content: space-between;
   margin-bottom: 20px;
 }
-.search-container .bottom {
-}
 .input-header {
   font-size: 16px;
   font-weight: 700;
   color: #727272;
-
   display: flex;
   align-items: center;
 }
