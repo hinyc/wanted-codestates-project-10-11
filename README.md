@@ -2,7 +2,11 @@
 
 ## wanted-codestates-project-10-11 🌈
 
-📎 [과제링크](https://flamboyant-borg-cf3d11.netlify.app/)
+### 📎 [과제링크](https://flamboyant-borg-cf3d11.netlify.app/)
+
+![스크린샷 2022-03-02 오후 1 46 52](https://user-images.githubusercontent.com/85574104/156296921-4b10232c-4e60-406f-b8c3-acb35b8912e0.png)
+
+<br />
 
 ![스크린샷 2022-03-02 오후 1 46 52](https://user-images.githubusercontent.com/85574104/156296921-4b10232c-4e60-406f-b8c3-acb35b8912e0.png)
 
@@ -28,6 +32,11 @@
 
 ### 구현한 기능 목록 📝
 
+
+이름
+한일
+하고싶은말 어려웠던것들
+
 - vue.js를 이용한 SPA 구현
 - 데이터를 활용한 펜타곤 그래프와 바 그래프 구현
 - 검색 및 탭을 활용하여 데이터 필터링 구현
@@ -50,3 +59,5 @@
 
 **팀원**
 [김주영](https://github.com/juo1221) | [복지호](https://github.com/Jiho31) | [우혁주](https://github.com/Space-Belt) | [전용태](https://github.com/yong313)
+
+<br />
