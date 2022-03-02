@@ -29,7 +29,7 @@
         @changeCurrentTab="changeCurrentTab"
       />
     </div>
-    <Result :selectCompany="selectCompany" />
+    <Result :selectCompany="selectCompany" :currentTab="currentTab" />
   </div>
 </template>
 <script>
