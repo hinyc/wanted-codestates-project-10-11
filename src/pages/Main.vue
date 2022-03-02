@@ -1,8 +1,13 @@
 <template>
   <div id="container">
-    <Search />
+    <Search
+      :inputValue="inputValue"
+      @setInputValue="setInputValue"
+      :selectCompany="selectCompany"
+      :resetSearch="resetSearch"
+      @showMessage="showMessage"
+    />
     <MessageBox v-if="isMessageVisible" />
-    <button class="open-message-btn" @click="showMessage">클릭</button>
     <PantagonChart />
     <div class="graph">graph</div>
     <div class="tabContainer">
@@ -32,6 +37,9 @@ export default {
       samsung: referenceData.samsungElectronics,
       kakao: referenceData.kakao,
       lg: referenceData.lgCNS,
+      selectCompany: '',
+      companies: ['삼성전자', '카카오', 'LG CNS'],
+      inputValue: '',
       currentTab: 0,
       tabs: [
         {
@@ -67,17 +75,35 @@ export default {
       console.log(i);
     },
     showMessage() {
+      // 이전 이벤트로 인해 메시지창이 이미 띄워져 있으면 이벤트 실행하지 않고 리턴
       if (this.isMessageVisible) {
         return;
       }
       if (this.msgTimeoutID) {
-        clearTimeout(this.setTimeout);
+        clearTimeout(this.msgTimeoutID);
       }
       this.isMessageVisible = true;
 
       this.msgTimeoutID = setTimeout(() => {
         this.isMessageVisible = !this.isMessageVisible;
       }, 1500);
+    },
+    setInputValue(word) {
+      word = word.toUpperCase();
+      if (this.companies.indexOf(word) !== -1) {
+        this.inputValue = word;
+        this.selectCompany = word;
+        this.changeCurrentTab(0);
+        document.querySelector('.company-name').blur();
+      } else {
+        // '기업 정보가 없습니다' 메시지 창 띄우기
+        this.showMessage();
+        // this.inputValue = '';
+      }
+    },
+    resetSearch() {
+      this.selectCompany = '';
+      this.inputValue = '';
     },
   },
 
@@ -151,9 +177,5 @@ input::placeholder {
   width: 339px;
   height: 202px;
   background-color: rgba(0, 0, 0, 0.199);
-}
-.open-message-btn {
-  position: absolute;
-  left: 30px;
 }
 </style>
