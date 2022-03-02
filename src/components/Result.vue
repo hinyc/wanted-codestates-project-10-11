@@ -4,6 +4,7 @@
       <div class="sub-title">M Y&nbsp;&nbsp; R E S U L T</div>
       <div class="main-title">나의 결과는?</div>
     </div>
+    <div class="v-bg"></div>
     <div v-for="(score, idx) in user" :key="idx" class="graph-container">
       <div class="ratio">
         <span class="score" :style="selectScoreColor(score)">{{ score }}</span>
@@ -14,6 +15,9 @@
         {{ tendencies[idx][0] }}
       </div>
       <div class="chart-wrapper">
+        <div class="chart-bg">
+          <div class="h-bg"></div>
+        </div>
         <BarChart
           :userScore="user[idx]"
           :companyScore="getCompanyScore(idx)"
@@ -117,6 +121,7 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
 }
 .result-title {
   display: flex;
@@ -179,5 +184,23 @@ export default {
   margin-top: 8px;
   overflow: hidden;
   height: 30px;
+}
+.chart-bg {
+  position: absolute;
+  width: 110px;
+  height: 40px;
+}
+.h-bg {
+  position: absolute;
+  width: 110px;
+  height: 10px;
+  border-bottom: 1px solid #d2d1d2;
+}
+.v-bg {
+  position: absolute;
+  top: 140px;
+  width: 1px;
+  height: 170px;
+  border-left: 1px solid #d2d1d2;
 }
 </style>
