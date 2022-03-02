@@ -29,6 +29,7 @@ export default defineComponent({
     userScore: Number,
     companyScore: Number,
     selectCompany: String,
+    currentTab: Number,
   },
   data() {
     return {
@@ -99,10 +100,14 @@ export default defineComponent({
   //   console.log('크리에이트', this.companyScore, this.data);
   // },
   beforeUpdate() {
-    this.testData.datasets[0].data[0] =
-      this.userScore > 5 ? this.userScore * -1 : this.userScore;
+    if (this.currentTab === 2) {
+      this.testData.datasets[0].data[0] = 0;
+    } else {
+      this.testData.datasets[0].data[0] =
+        this.userScore > 5 ? this.userScore * -1 : this.userScore;
+    }
 
-    if (!this.selectCompany) {
+    if (!this.selectCompany || this.currentTab === 1) {
       this.testData.datasets[0].data[1] = 0;
     } else {
       this.testData.datasets[0].data[1] =

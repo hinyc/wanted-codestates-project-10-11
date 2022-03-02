@@ -23,7 +23,7 @@ export default defineComponent({
       ],
       datasets: [
         {
-          data: [0, 0, 0, 0, 0],
+          data: null,
           backgroundColor: 'rgba(255, 193, 74, 0.32)',
           borderColor: ' #FFD335',
           pointRadius: 0,
@@ -73,6 +73,16 @@ export default defineComponent({
       matchData: this.testData,
     };
   },
+  methods: {
+    show(idx) {
+      this.matchData.datasets[idx].fill = true;
+      this.matchData.datasets[idx].showLine = true;
+    },
+    hide(idx) {
+      this.matchData.datasets[idx].fill = false;
+      this.matchData.datasets[idx].showLine = false;
+    },
+  },
   beforeMount() {
     Chart.defaults.hover = { mode: null };
     const { plugins, scale } = Chart.defaults;
@@ -85,6 +95,7 @@ export default defineComponent({
       style: 'normal',
       weight: 'bold',
     };
+    console.log(scale);
     scale.ticks = {
       max: 10,
       min: 0,
@@ -99,37 +110,33 @@ export default defineComponent({
         0: (selectedCompany) => {
           this.matchData.datasets[1].data = [...referenceData['user']];
           this.matchData.datasets[0].data = [...referenceData[selectedCompany]];
+          this.show(1);
+          this.show(0);
         },
-        1: (selectedCompany) => {
-          console.log(selectedCompany);
+        1: () => {
           this.matchData.datasets[1].data = [...referenceData['user']];
-          this.matchData.datasets[0].data = [0, 0, 0, 0, 0];
+          this.show(1);
+          this.hide(0);
         },
         2: (selectedCompany) => {
-          this.matchData.datasets[1].data = [0, 0, 0, 0, 0];
           this.matchData.datasets[0].data = [...referenceData[selectedCompany]];
+          this.show(0);
+          this.hide(1);
         },
       },
       convert(selectedTabNumber, selectedCompany) {
-        this.table[selectedTabNumber](selectedCompany);
+        if (!this.table[selectedTabNumber])
+          throw `invalid selectedTabNumber : ${selectedTabNumber}`;
+        selectedCompany
+          ? this.table[selectedTabNumber](selectedCompany)
+          : this.table[1]();
       },
     };
-    switch (this.selectCompany) {
-      case '삼성전자':
-        convertor.convert(this.currentTab, '삼성전자');
-        break;
-      case '카카오':
-        convertor.convert(this.currentTab, '카카오');
-        break;
-      case 'LG':
-        convertor.convert(this.currentTab, 'LG');
-        break;
-      default:
-        this.matchData.datasets[1].data = [...referenceData['user']];
-        this.matchData.datasets[0].data = [0, 0, 0, 0, 0];
-        break;
+    try {
+      convertor.convert(this.currentTab, this.selectCompany);
+    } catch (e) {
+      console.log(e);
     }
-    console.log();
   },
 });
 </script>
