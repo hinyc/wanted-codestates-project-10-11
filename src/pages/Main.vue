@@ -7,10 +7,20 @@
       :selectCompany="selectCompany"
       :resetSearch="resetSearch"
       @showMessage="showMessage"
+      @showDropdown="showDropdown"
+      @hideDropdown="hideDropdown"
+    />
+    <AutoComplete
+      v-if="isDropdownVisible"
+      :companies="companies"
+      @setInputValue="setInputValue"
     />
     <MessageBox v-if="isMessageVisible" />
 
-    <PantagonChart :searchData="searchData" />
+    <div class="catBox">
+      <img src="../assets/catImg.png" class="catImg" />
+      <PantagonChart :selectCompany="selectCompany" :currentTab="currentTab" />
+    </div>
 
     <div class="tabContainer">
       <CategoryTab
@@ -19,7 +29,7 @@
         @changeCurrentTab="changeCurrentTab"
       />
     </div>
-    <Result />
+    <Result :selectCompany="selectCompany" />
   </div>
 </template>
 <script>
@@ -30,13 +40,13 @@ import PantagonChart from '../components/PantagonChart.vue';
 import Search from '../components/Search.vue';
 import MessageBox from '../components/MessageBox.vue';
 import NavBar from '../components/NavBar.vue';
+import AutoComplete from '../components/AutoComplete.vue';
 
 export default {
   name: 'App',
 
   data() {
     return {
-      searchData: '카카오',
       user: referenceData.user,
       samsung: referenceData.samsungElectronics,
       kakao: referenceData.kakao,
@@ -70,6 +80,7 @@ export default {
       ],
       isMessageVisible: false,
       msgTimeoutID: {},
+      isDropdownVisible: false,
     };
   },
 
@@ -93,6 +104,7 @@ export default {
       }, 1500);
     },
     setInputValue(word) {
+      // 기업명을 검색하면
       word = word.toUpperCase();
       if (this.companies.indexOf(word) !== -1) {
         this.inputValue = word;
@@ -103,11 +115,21 @@ export default {
         // '기업 정보가 없습니다' 메시지 창 띄우기
         this.showMessage();
         // this.inputValue = '';
+        // this.selectCompany = '';
       }
+      console.log(this.inputValue);
     },
     resetSearch() {
       this.selectCompany = '';
       this.inputValue = '';
+    },
+    showDropdown() {
+      this.isDropdownVisible = true;
+    },
+    hideDropdown() {
+      setTimeout(() => {
+        this.isDropdownVisible = false;
+      }, 150);
     },
   },
 
@@ -118,6 +140,7 @@ export default {
     Result,
     CategoryTab,
     NavBar,
+    AutoComplete,
   },
 };
 </script>
@@ -188,5 +211,21 @@ input::placeholder {
   width: 339px;
   height: 202px;
   background-color: rgba(0, 0, 0, 0.199);
+}
+
+.catBox {
+  width: 100%;
+  height: auto;
+  position: relative;
+}
+
+.catImg {
+  width: 54px;
+  height: 54px;
+  position: absolute;
+  top: 54%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9;
 }
 </style>

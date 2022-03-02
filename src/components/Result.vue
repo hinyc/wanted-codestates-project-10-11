@@ -6,19 +6,24 @@
     </div>
     <div v-for="(score, idx) in user" :key="idx" class="graph-container">
       <div class="ratio">
-        <span class="score">{{ score }}</span>
-        /
-        <span class="total">10</span>
+        <span class="score" :style="selectScoreColor(score)">{{ score }}</span>
+
+        <span class="total" :style="selectTotalColor(score)">/10</span>
       </div>
-      <div class="tendency left">{{ tendencies[idx][0] }}</div>
+      <div class="tendency left" :style="selectTendencyColor(score)">
+        {{ tendencies[idx][0] }}
+      </div>
       <div class="chart-wrapper">
-        <BarChart />
+        <BarChart :userScore="user[idx]" :companyScore="getCompanyScore(idx)" />
       </div>
-      <div class="tendency right">{{ tendencies[idx][1] }}</div>
+      <div class="tendency right" :style="selectTendencyColor(10 - score)">
+        {{ tendencies[idx][1] }}
+      </div>
       <div class="ratio">
-        <span class="score">2</span>
-        /
-        <span class="total">10</span>
+        <span class="score" :style="selectScoreColor(10 - score)">{{
+          10 - score
+        }}</span>
+        <span class="total" :style="selectTotalColor(10 - score)">/10</span>
       </div>
     </div>
   </div>
@@ -41,14 +46,62 @@ export default {
   data() {
     return {
       user: referenceData.user,
-      samsung: referenceData.삼성,
-      kakao: referenceData.카카오,
-      lg: referenceData.lg,
+      companyData: undefined,
       tendencies: tendencies,
     };
   },
-  methods: {},
+  methods: {
+    selectTendencyColor(num) {
+      let color = 'color:#3bbe70';
+      if (num < 5) {
+        color = 'color:#000';
+      }
+      return color;
+    },
+    selectScoreColor(num) {
+      let color = 'color:#538035';
+      if (num < 5) {
+        color = 'color:#000';
+      }
+      return color;
+    },
+    selectTotalColor(num) {
+      let color = 'color:#538035';
+      if (num < 5) {
+        color = 'color:#7f7e7f';
+      }
+      return color;
+    },
+    getCompanyScore(idx) {
+      if (!this.companyData) return 0;
+      return this.companyData[idx];
+    },
+  },
   components: { BarChart },
+  props: {
+    selectCompany: String,
+  },
+  beforeUpdate() {
+    switch (this.selectCompany) {
+      case '삼성전자':
+        console.log('check', referenceData.삼성);
+        this.companyData = referenceData.삼성;
+        break;
+      case '카카오':
+        console.log('check', referenceData.카카오);
+        this.companyData = referenceData.카카오;
+
+        break;
+      case 'LG CNS':
+        console.log('check', referenceData.lg);
+        this.companyData = referenceData.lg;
+        break;
+      default:
+        this.matchData.datasets[1].data = [...referenceData['user']];
+        this.matchData.datasets[0].data = [0, 0, 0, 0, 0];
+        break;
+    }
+  },
 };
 </script>
 
@@ -106,6 +159,9 @@ export default {
   text-align: center;
   width: 37px;
   font-weight: 700;
+}
+.ratio .total {
+  font-size: 10px;
 }
 .tendency {
   width: 55px;

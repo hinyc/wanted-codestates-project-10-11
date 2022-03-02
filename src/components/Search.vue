@@ -53,6 +53,8 @@
         placeholder="기업명을 검색하세요"
         :value="inputValue"
         @keyup.enter="onEnterHandler"
+        @focus="onFocusHandler"
+        @blur="onBlurHandler"
       />
     </div>
   </section>
@@ -60,7 +62,14 @@
 
 <script>
 export default {
-  props: ['showMessage', 'inputValue', 'selectCompany', 'resetSearch'],
+  props: [
+    'showMessage',
+    'inputValue',
+    'selectCompany',
+    'resetSearch',
+    'showDropdown',
+    'hideDropdown',
+  ],
   methods: {
     onEnterHandler(e) {
       this.$emit('setInputValue', e.target.value);
@@ -68,6 +77,12 @@ export default {
     },
     removeSelectedCompany() {
       this.resetSearch();
+    },
+    onFocusHandler() {
+      this.$emit('showDropdown');
+    },
+    onBlurHandler() {
+      this.$emit('hideDropdown');
     },
   },
 };
