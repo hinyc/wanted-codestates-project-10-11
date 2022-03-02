@@ -33,7 +33,7 @@
 
 | 이름                                   | 직책 | 역할                                           |
 | ------------------------------------ | ---- | ------------------------------------------------ |
-|🏄🏻‍♂️[홍인열](https://github.com/hinyc)      | 팀장 | chart.js를 이용한 결과 bar-chart 구현 및 데이터 필터링    |
+|🏄🏻‍♂️ [홍인열](https://github.com/hinyc)      | 팀장 | chart.js를 이용한 결과 bar-chart 구현 및 데이터 필터링    |
 |[김주영](https://github.com/juo1221)    | 팀원 |                                                   |
 |[복지호](https://github.com/Jiho31)     | 팀원 |                                                   |
 |[우혁주](https://github.com/Space-Belt) | 팀원 |                                                   |
@@ -49,11 +49,11 @@
 ## 구현한 기능 목록
 <details>
   <summary>홍인열</summary>
-  <ol>
+  <ul>
    <li> vue-chart.js를 이용한 bar-chart구현</li>
    <li> 선택한 기업에 따른 기업 데이터 결과 보여주는 기능 구현</li>
    <li> 탭 선택에 따라 데이터 필터링 기능</li>
-  </ol>
+  </ul>
 </details>
 <details>
   <summary>김주영</summary>
