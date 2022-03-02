@@ -14,7 +14,11 @@
         {{ tendencies[idx][0] }}
       </div>
       <div class="chart-wrapper">
-        <BarChart :userScore="user[idx]" :companyScore="getCompanyScore(idx)" />
+        <BarChart
+          :userScore="user[idx]"
+          :companyScore="getCompanyScore(idx)"
+          :selectCompany="selectCompany"
+        />
       </div>
       <div class="tendency right" :style="selectTendencyColor(10 - score)">
         {{ tendencies[idx][1] }}
@@ -40,7 +44,6 @@ const tendencies = [
   ['개인성향', '조직성향'],
   ['수평사고', '위계사고'],
 ];
-console.log(referenceData);
 export default {
   name: 'App',
   data() {
