@@ -10,7 +10,10 @@
     />
     <MessageBox v-if="isMessageVisible" />
 
-    <PantagonChart :searchData="searchData" />
+    <div class="catBox">
+      <img src="../assets/catImg.png" class="catImg" />
+      <PantagonChart :searchData="searchData" />
+    </div>
 
     <div class="tabContainer">
       <CategoryTab
@@ -189,4 +192,21 @@ input::placeholder {
   height: 202px;
   background-color: rgba(0, 0, 0, 0.199);
 }
+
+.catBox {
+  width: 100%;
+  height: auto;
+  position: relative;
+}
+
+.catImg {
+  width: 54px;
+  height: 54px;
+  position: absolute;
+  top: 54%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9;
+}
+
 </style>
