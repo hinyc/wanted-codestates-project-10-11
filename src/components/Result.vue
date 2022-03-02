@@ -6,19 +6,27 @@
     </div>
     <div v-for="(score, idx) in user" :key="idx" class="graph-container">
       <div class="ratio">
-        <span class="score">{{ score }}</span>
-        /
-        <span class="total">10</span>
+        <span class="score" :style="selectScoreColor(score)">{{ score }}</span>
+
+        <span class="total" :style="selectTotalColor(score)">/10</span>
       </div>
-      <div class="tendency left">{{ tendencies[idx][0] }}</div>
+      <div class="tendency left" :style="selectTendencyColor(score)">
+        {{ tendencies[idx][0] }}
+      </div>
       <div class="chart-wrapper">
-        <BarChart />
+        <BarChart
+          :userScore="user[idx]"
+          :companyScore="referenceData[searchData][idx]"
+        />
       </div>
-      <div class="tendency right">{{ tendencies[idx][1] }}</div>
+      <div class="tendency right" :style="selectTendencyColor(10 - score)">
+        {{ tendencies[idx][1] }}
+      </div>
       <div class="ratio">
-        <span class="score">2</span>
-        /
-        <span class="total">10</span>
+        <span class="score" :style="selectScoreColor(10 - score)">{{
+          10 - score
+        }}</span>
+        <span class="total" :style="selectTotalColor(10 - score)">/10</span>
       </div>
     </div>
   </div>
@@ -41,14 +49,37 @@ export default {
   data() {
     return {
       user: referenceData.user,
-      samsung: referenceData.삼성,
-      kakao: referenceData.카카오,
-      lg: referenceData.lg,
+      referenceData: referenceData,
       tendencies: tendencies,
     };
   },
-  methods: {},
+  methods: {
+    selectTendencyColor(num) {
+      let color = 'color:#3bbe70';
+      if (num < 5) {
+        color = 'color:#000';
+      }
+      return color;
+    },
+    selectScoreColor(num) {
+      let color = 'color:#538035';
+      if (num < 5) {
+        color = 'color:#000';
+      }
+      return color;
+    },
+    selectTotalColor(num) {
+      let color = 'color:#538035';
+      if (num < 5) {
+        color = 'color:#7f7e7f';
+      }
+      return color;
+    },
+  },
   components: { BarChart },
+  props: {
+    searchData: String,
+  },
 };
 </script>
 
@@ -106,6 +137,9 @@ export default {
   text-align: center;
   width: 37px;
   font-weight: 700;
+}
+.ratio .total {
+  font-size: 10px;
 }
 .tendency {
   width: 55px;
