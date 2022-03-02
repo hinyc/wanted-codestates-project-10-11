@@ -57,7 +57,11 @@
 </details>
 <details>
   <summary>김주영</summary>
-  -그래프
+  <ul>
+   <li> vue-chart.js를 이용한 Radar-chart구현</li>
+   <li> 선택한 기업에 따른 기업 데이터 결과 보여주는 기능 구현</li>
+   <li> 탭 선택에 따른 기업의 차트 변경 기능 구현</li>
+  </ul>
 </details>
 <details>
   <summary>복지호</summary>
