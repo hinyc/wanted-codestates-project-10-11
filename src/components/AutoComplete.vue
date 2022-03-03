@@ -1,11 +1,17 @@
 <template>
   <div class="dropdown-container">
     <ul>
-      <li class="dropdown-item" @click="onClickHandler">
-        {{ companies[0] }}
+      <li
+        v-for="(item, i) of dropdownItems"
+        v-bind:key="i"
+        class="dropdown-item"
+        @click="onClickHandler"
+      >
+        {{ item }}
       </li>
-      <li class="dropdown-item" @click="onClickHandler">{{ companies[1] }}</li>
-      <li class="dropdown-item" @click="onClickHandler">{{ companies[2] }}</li>
+      <li class="no-match" v-if="dropdownItems.length === 0">
+        일치하는 기업명이 없습니다
+      </li>
     </ul>
   </div>
 </template>
@@ -13,12 +19,14 @@
 <script>
 export default {
   data() {
-    return {};
+    return {
+      // dropdownItems: this.companies,
+    };
   },
-  props: ['companies', 'setInputValue'],
+  props: ['companies', 'setCompanyName', 'inputValue', 'dropdownItems'],
   methods: {
     onClickHandler(e) {
-      this.$emit('setInputValue', e.target.textContent);
+      this.$emit('setCompanyName', e.target.textContent);
     },
   },
 };
@@ -43,5 +51,9 @@ export default {
 }
 .dropdown-item:hover {
   background: #f8f8f8;
+}
+.no-match {
+  padding: 6px;
+  font-size: 12px;
 }
 </style>

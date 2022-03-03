@@ -3,17 +3,20 @@
     <NavBar />
     <Search
       :inputValue="inputValue"
-      @setInputValue="setInputValue"
+      @setCompanyName="setCompanyName"
       :selectCompany="selectCompany"
       :resetSearch="resetSearch"
       @showMessage="showMessage"
       @showDropdown="showDropdown"
       @hideDropdown="hideDropdown"
+      @setInputValue="setInputValue"
     />
     <AutoComplete
       v-if="isDropdownVisible"
       :companies="companies"
-      @setInputValue="setInputValue"
+      @setCompanyName="setCompanyName"
+      :inputValue="inputValue"
+      :dropdownItems="dropdownItems"
     />
     <MessageBox v-if="isMessageVisible" />
 
@@ -81,6 +84,7 @@ export default {
       isMessageVisible: false,
       msgTimeoutID: {},
       isDropdownVisible: false,
+      dropdownItems: ['삼성전자', '카카오', 'LG'],
     };
   },
 
@@ -102,7 +106,7 @@ export default {
         this.isMessageVisible = !this.isMessageVisible;
       }, 1500);
     },
-    setInputValue(word) {
+    setCompanyName(word) {
       // 기업명을 검색하면
       word = word.toUpperCase();
       if (this.companies.indexOf(word) !== -1) {
@@ -113,9 +117,15 @@ export default {
       } else {
         // '기업 정보가 없습니다' 메시지 창 띄우기
         this.showMessage();
-        // this.inputValue = '';
-        // this.selectCompany = '';
       }
+    },
+    setInputValue(val) {
+      this.inputValue = val;
+      // 입력값에 따라 드롭다운 아이템 리스트 필터링 (입력된 글자 포함하는 단어만 리스트에 담기)
+      const newItems = this.companies.filter(
+        (name) => name.indexOf(this.inputValue) > -1,
+      );
+      this.dropdownItems = newItems;
     },
     resetSearch() {
       this.selectCompany = '';
@@ -128,6 +138,13 @@ export default {
       setTimeout(() => {
         this.isDropdownVisible = false;
       }, 150);
+    },
+    setDropdownItems() {
+      const newItems = this.companies.filter((name) =>
+        name.indexOf(this.inputValue),
+      );
+      console.log(newItems);
+      this.dropdownItems = newItems;
     },
   },
 
