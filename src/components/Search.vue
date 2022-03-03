@@ -55,6 +55,7 @@
         @keyup.enter="onEnterHandler"
         @focus="onFocusHandler"
         @blur="onBlurHandler"
+        @keyup="onKeyupHandler"
       />
     </div>
   </section>
@@ -69,10 +70,11 @@ export default {
     'resetSearch',
     'showDropdown',
     'hideDropdown',
+    'setInputValue',
   ],
   methods: {
     onEnterHandler(e) {
-      this.$emit('setInputValue', e.target.value);
+      this.$emit('setCompanyName', e.target.value);
       document.querySelector('.company-name').blur();
     },
     removeSelectedCompany() {
@@ -83,6 +85,10 @@ export default {
     },
     onBlurHandler() {
       this.$emit('hideDropdown');
+    },
+    onKeyupHandler(e) {
+      // console.log(e.target.value);
+      this.$emit('setInputValue', e.target.value);
     },
   },
 };
