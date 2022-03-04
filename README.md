@@ -36,7 +36,7 @@
 |🏄🏻‍♂️ [홍인열](https://github.com/hinyc)   | 팀장 |보일러플레이트 작성, 테스트 쪼개기, bar-chart 구현    |
 |🐸 [김주영](https://github.com/juo1221) | 팀원 |Radar-chart 구현                                    |
 |🐮 [복지호](https://github.com/Jiho31)  | 팀원 |  검색창에서 검색 및 자동완성 기능, 메시지 창 띄우기 구현       |
-|🍔 [우혁주](https://github.com/Space-Belt) | 팀원 |                                                   |
+|🍔 [우혁주](https://github.com/Space-Belt) | 팀원 |  중앙 타입별 보기 구현                               |
 |🍕 [전용태](https://github.com/yong313)    | 팀원 |  상단 네비게이션 컴포넌트 구현                        |
 ### 기술 스텍 🛠
 
@@ -73,7 +73,9 @@
 </details>
 <details>
   <summary>우혁주</summary>
-  -그래프
+    <ul>
+      <li> 모두, 본인, 회사 별로 보는 버튼 구현 </li>
+    </ul>
 </details>
 <details>
   <summary>전용태</summary>
