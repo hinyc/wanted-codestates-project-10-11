@@ -9,7 +9,11 @@
 </div>
 <br />
 
+![스크린샷 2022-03-02 오후 1 46 52](https://user-images.githubusercontent.com/85574104/156296880-a36a987f-0086-4909-a523-b7b9d0df6a31.png)
+
+
 ### About 🪄
+
 
 - 검색 - 기업명을 검색하여 원하는 기업의 정보를 확인할 수 있습니다. 등록되지 않는 기업의경우 안내메세지가 나타납니다.
 - 펜타곤 그래프 - 펜타곤 그래프를 통하여 적극적인, 자신 있는, 책임 있는, 개인주의, 수평적인, 총 5개의 데이터를 그래프를 통하여 확인 가능합니다.
@@ -24,8 +28,6 @@
 2. 펜타곤 그래프를 활용하여 5개의 데이터 그래프를 통하여 확인합니다.
 3. 탭을 사용하여 3가지 정보를 필터링하여 데이터를 확인합니다.
 4. 바 그래프를 활용하여 나의 결과를 확인합니다.
-
-
 
 <br />
 
@@ -45,7 +47,6 @@
 <img src="https://img.shields.io/badge/CSS-35485e?style=flat-round&logo=CSS3&logoColor=28a4d8"/></a> &nbsp;
 <img src="https://img.shields.io/badge/Vue--Chart.js-35485e?style=flat-round&logo=Axios&logoColor=CA4245"/></a> &nbsp;
 
----
 ## 구현한 기능 목록
 <details>
   <summary>홍인열</summary>
